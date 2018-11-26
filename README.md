@@ -3,6 +3,7 @@
 ### Fibonacci
 * 对于相关Fibonacci的题,先找出规律再进行表达式的总结.
 * 相关题目参考:
-    * [跳台阶]()
-    * [变态跳台阶]()
-    * [矩形覆盖问题]()
+    * [Fibonacci](https://github.com/kvenLin/Algorithm/blob/master/JianzhiOffer/src/Fibonacci.java)
+    * [跳台阶](https://github.com/kvenLin/Algorithm/blob/master/JianzhiOffer/src/JumpFloor.java)
+    * [变态跳台阶](https://github.com/kvenLin/Algorithm/blob/master/JianzhiOffer/src/JumpFloorII.java)
+    * [矩形覆盖问题](https://github.com/kvenLin/Algorithm/blob/master/JianzhiOffer/src/RectCover.java)
