@@ -33,7 +33,7 @@ public class FindKthToTail {
         if (len - k < 0){
             return null;
         }else {
-            return map.get(len - k + 1);
+            return map.get(len - k);
         }
 
     }
@@ -52,6 +52,6 @@ public class FindKthToTail {
         FindKthToTail kth = new FindKthToTail();
         int[] arrry = {1, 2, 3};
         ListNode head = kth.convert(arrry);
-        System.out.println(kth.FindKthToTail(head,2) instanceof ListNode);
+        System.out.println(kth.FindKthToTail(head,1).val);
     }
 }
