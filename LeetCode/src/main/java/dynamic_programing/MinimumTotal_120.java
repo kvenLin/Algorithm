@@ -35,25 +35,25 @@ public class MinimumTotal_120 {
      * @return
      */
     public int minimumTotal(List<List<Integer>> triangle) {
-        int n = triangle.size();
-        int ans = Integer.MAX_VALUE;
-        int[][] dp = new int[n][n];
+        int m = triangle.size();
+        int n = triangle.get(m - 1).size();
+        int[][] dp = new int[m][n];
         dp[0][0] = triangle.get(0).get(0);
-
-        for (int i = 1; i < n; i++) {
-            for (int j = 0; j < i + 1; j++) {
-                int val = triangle.get(i).get(j);
-                dp[i][j] = Integer.MAX_VALUE;
-                if (j != 0) {
-                    dp[i][j] = Math.min(dp[i - 1][j - 1] + val, dp[i][j]);
-                }
-                if (j != i) {
-                    dp[i][j] = Math.min(dp[i - 1][j] + val, dp[i][j]);
+        for (int i = 1; i < m; i++) {
+            for (int j = 0; j < triangle.get(i).size(); j++) {
+                Integer data = triangle.get(i).get(j);
+                if (j == i) {
+                    dp[i][j] = dp[i - 1][j - 1] + data;
+                }else {
+                    if (i > 0 && j > 0) {
+                        dp[i][j] = Math.min(dp[i - 1][j], dp[i - 1][j - 1]) + data;
+                    }else if (i > 0) {
+                        dp[i][j] = dp[i - 1][j] + data;
+                    }
                 }
             }
         }
-        for (int i = 0; i < n; i++) ans = Math.min(ans, dp[n - 1][i]);
-        return ans;
+        return Arrays.stream(dp[m - 1]).min().getAsInt();
 
     }
 

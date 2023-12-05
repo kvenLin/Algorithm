@@ -12,22 +12,23 @@ import java.util.Arrays;
  */
 public class MinFallingPathSum_931 {
     public int minFallingPathSum(int[][] matrix) {
-        int m = matrix.length;
-        int n = matrix[0].length;
-        int[][] dp = new int[m][n];
-        for (int i = 0; i < m; i++) {
+        int n = matrix.length;
+        int[][] dp = new int[n][n];
+        for (int j = 0; j < n; j++) {
+            dp[0][j] = matrix[0][j];
+        }
+        for (int i = 1; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (i >= 1) {
-                    int left = j > 0 ? Math.min(dp[i - 1][j - 1] + matrix[i][j], Integer.MAX_VALUE) : Integer.MAX_VALUE;// 左上元素是否存在
-                    int middle = dp[i - 1][j] + matrix[i][j];//正上方元素
-                    int right = j < n - 1 ? Math.min(dp[i - 1][j + 1] + matrix[i][j], Integer.MAX_VALUE) : Integer.MAX_VALUE;//右上方元素是否存在
-                    dp[i][j] = Math.min(Math.min(left, middle), right);
-                }else {
-                    dp[i][j] = matrix[i][j];
+                int data = matrix[i][j];
+                if (j > 0 && j < n - 1) {
+                    dp[i][j] = Math.min(Math.min(dp[i - 1][j - 1], dp[i - 1][j]), dp[i - 1][j + 1]) + data;
+                }else if (j == 0) {
+                    dp[i][j] = Math.min(dp[i - 1][j], dp[i - 1][j + 1]) + data;
+                }else if (j == n - 1) {
+                    dp[i][j] = Math.min(dp[i - 1][j], dp[i - 1][j - 1]) + data;
                 }
             }
         }
-        int res = Arrays.stream(dp[n - 1]).min().getAsInt();
-        return res;
+        return Arrays.stream(dp[n - 1]).min().getAsInt();
     }
 }
